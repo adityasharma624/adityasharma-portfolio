@@ -1,91 +1,59 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { ThemeProps } from '../types';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
-const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Competitive Programming', href: '#competitive-programming' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Blog', href: '#blog' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' },
-];
+export default function Navbar({ isDarkMode, setIsDarkMode, activeSection }: ThemeProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const navItems = [
+    { id: 'hero', label: 'Home' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'competitive-programming', label: 'CP' },
+    { id: 'projects', label: 'Projects' }
+  ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const toggleDarkMode = () => {
+    if (setIsDarkMode) {
+      setIsDarkMode(!isDarkMode);
+    }
+  };
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md' : 'bg-white shadow-sm'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <a href="#" className="text-xl font-bold text-primary-600">
-            Aditya
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+    <nav className={`w-full py-4 transition-colors duration-500 ${
+      isDarkMode ? 'bg-gray-900/80 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'
+    }`}>
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-8">
             {navItems.map((item) => (
               <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-600 hover:text-primary-600 transition-colors"
+                key={item.id}
+                href={`#${item.id}`}
+                className={`text-sm font-medium transition-colors duration-500 ${
+                  activeSection === item.id
+                    ? isDarkMode ? 'text-accent-turquoise' : 'text-accent-turquoise'
+                    : isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+                }`}
               >
-                {item.name}
+                {item.label}
               </a>
             ))}
           </div>
 
-          {/* Mobile Navigation Button */}
           <button
-            className="md:hidden p-2"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleDarkMode}
+            className={`p-2 rounded-lg transition-colors duration-500 ${
+              isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+            }`}
           >
-            {isOpen ? (
-              <XMarkIcon className="h-6 w-6" />
+            {isDarkMode ? (
+              <SunIcon className="h-5 w-5" />
             ) : (
-              <Bars3Icon className="h-6 w-6" />
+              <MoonIcon className="h-5 w-5" />
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden py-4"
-          >
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-600 hover:text-primary-600 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
       </div>
-    </motion.nav>
+    </nav>
   );
 } 

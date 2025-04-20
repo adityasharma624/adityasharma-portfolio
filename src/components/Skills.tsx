@@ -1,94 +1,93 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { 
+  CommandLineIcon,
+  CodeBracketSquareIcon,
+  CircleStackIcon,
+  CpuChipIcon,
+  ArrowPathIcon,
+  WindowIcon
+} from '@heroicons/react/24/outline';
+import { ThemeProps } from '../types';
 
-const skills = [
+interface Skill {
+  name: string;
+  icon: React.ReactNode;
+}
+
+const skills: Skill[] = [
   {
-    category: 'Languages',
-    items: [
-      { name: 'C++' },
-      { name: 'Python' },
-      { name: 'JavaScript' },
-      { name: 'TypeScript' },
-      { name: 'Java' },
-    ],
+    name: 'Python',
+    icon: <CommandLineIcon className="w-5 h-5" />
   },
   {
-    category: 'Technologies',
-    items: [
-      { name: 'React' },
-      { name: 'Node.js' },
-      { name: 'HTML/CSS' },
-      { name: 'Tailwind CSS' },
-      { name: 'Git' },
-      { name: 'Docker' },
-      { name: 'AWS' },
-      { name: 'MongoDB' },
-    ],
+    name: 'Java',
+    icon: <CodeBracketSquareIcon className="w-5 h-5" />
   },
   {
-    category: 'CSE Subjects',
-    items: [
-      { name: 'Data Structures' },
-      { name: 'Algorithms' },
-      { name: 'Operating Systems' },
-      { name: 'Computer Networks' },
-      { name: 'Database Systems' },
-      { name: 'Object-Oriented Programming' },
-    ],
+    name: 'C++',
+    icon: <CodeBracketSquareIcon className="w-5 h-5" />
   },
+  {
+    name: 'C',
+    icon: <CodeBracketSquareIcon className="w-5 h-5" />
+  },
+  {
+    name: 'SQL',
+    icon: <CircleStackIcon className="w-5 h-5" />
+  },
+  {
+    name: 'NumPy',
+    icon: <CpuChipIcon className="w-5 h-5" />
+  },
+  {
+    name: 'Pandas',
+    icon: <CpuChipIcon className="w-5 h-5" />
+  },
+  {
+    name: 'Scikit-learn',
+    icon: <CpuChipIcon className="w-5 h-5" />
+  },
+  {
+    name: 'Git & GitHub',
+    icon: <ArrowPathIcon className="w-5 h-5" />
+  },
+  {
+    name: 'VS Code',
+    icon: <WindowIcon className="w-5 h-5" />
+  }
 ];
 
-export default function Skills() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
+export default function Skills({ isDarkMode }: ThemeProps) {
   return (
-    <section id="skills" className="section bg-gray-50">
-      <div className="container">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="heading text-center">Skills</h2>
-          <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Here's a breakdown of my technical skills and expertise.
-          </p>
+    <div className="space-y-6">
+      <h2 className={`text-xl font-semibold mb-6 ${
+        isDarkMode ? 'text-white' : 'text-gray-900'
+      }`}>
+        Skills
+      </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((category, categoryIndex) => (
-              <motion.div
-                key={category.category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-                className="bg-white p-6 rounded-lg shadow-sm"
-              >
-                <h3 className="text-xl font-semibold mb-6 text-primary-600">{category.category}</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {category.items.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{
-                        duration: 0.3,
-                        delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                      }}
-                      className="bg-gray-50 p-3 rounded-md text-center text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                    >
-                      {skill.name}
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+      <div className="grid grid-cols-5 gap-4">
+        {skills.map((skill) => (
+          <div
+            key={skill.name}
+            className={`p-4 rounded-lg ${
+              isDarkMode
+                ? 'bg-gray-800'
+                : 'bg-gray-50'
+            }`}
+          >
+            <div className={`mb-3 ${
+              isDarkMode ? 'text-accent-turquoise' : 'text-accent-turquoise'
+            }`}>
+              {skill.icon}
+            </div>
+            <h3 className={`text-sm font-medium ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              {skill.name}
+            </h3>
           </div>
-        </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 } 
