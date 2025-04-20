@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ThemeProps } from '../types';
+import { Link } from 'react-router-dom';
 
 const featuredProjects = [
   {
@@ -90,8 +91,8 @@ export default function Projects({ isDarkMode }: ThemeProps) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="flex justify-center mt-6"
       >
-        <a
-          href="#"
+        <Link
+          to="/projects"
           className={`px-4 py-2 rounded-lg font-medium ${
             isDarkMode
               ? 'bg-gray-800 text-white hover:bg-gray-700'
@@ -99,7 +100,7 @@ export default function Projects({ isDarkMode }: ThemeProps) {
           } transition-colors`}
         >
           View All Projects
-        </a>
+        </Link>
       </motion.div>
     </div>
   );
