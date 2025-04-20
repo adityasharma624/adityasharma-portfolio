@@ -1,53 +1,11 @@
 import { ThemeProps } from '../types';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-
-interface BlogPost {
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  content: string;
-  slug: string;
-}
-
-const blogPosts: BlogPost[] = [
-  {
-    title: "Understanding Machine Learning Algorithms",
-    excerpt: "A deep dive into the fundamentals of machine learning algorithms and their applications in real-world scenarios.",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    tags: ["Machine Learning", "AI", "Data Science"],
-    content: "Full content of the blog post...",
-    slug: "understanding-machine-learning-algorithms"
-  },
-  {
-    title: "Building Scalable Web Applications",
-    excerpt: "Best practices and patterns for creating scalable and maintainable web applications using modern technologies.",
-    date: "March 10, 2024",
-    readTime: "4 min read",
-    tags: ["Web Development", "Architecture", "Scalability"],
-    content: "Full content of the blog post...",
-    slug: "building-scalable-web-applications"
-  },
-  {
-    title: "Competitive Programming Tips and Tricks",
-    excerpt: "Essential strategies and techniques to improve your competitive programming skills and problem-solving abilities.",
-    date: "March 5, 2024",
-    readTime: "6 min read",
-    tags: ["Competitive Programming", "Algorithms", "Problem Solving"],
-    content: "Full content of the blog post...",
-    slug: "competitive-programming-tips-and-tricks"
-  }
-];
+import { Link } from 'react-router-dom';
+import { blogPosts } from '../types/blog';
 
 export default function Blog({ isDarkMode }: ThemeProps) {
-  const [expandedPost, setExpandedPost] = useState<string | null>(null);
-
-  const handleReadMore = (slug: string) => {
-    setExpandedPost(slug);
-  };
+  // Only show the first 3 blog posts on the home page
+  const recentPosts = blogPosts.slice(0, 3);
 
   return (
     <div className="space-y-6">
@@ -58,10 +16,11 @@ export default function Blog({ isDarkMode }: ThemeProps) {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {blogPosts.map((post) => (
-          <div
+        {recentPosts.map((post) => (
+          <Link
             key={post.slug}
-            className={`p-6 rounded-lg transition-all duration-300 hover:shadow-lg ${
+            to={`/blog/${post.slug}`}
+            className={`block p-6 rounded-lg transition-all duration-300 hover:shadow-lg ${
               isDarkMode
                 ? 'bg-gray-800 hover:bg-gray-700'
                 : 'bg-gray-50 hover:bg-white'
@@ -96,17 +55,7 @@ export default function Blog({ isDarkMode }: ThemeProps) {
                 </span>
               ))}
             </div>
-            <button
-              onClick={() => handleReadMore(post.slug)}
-              className={`mt-4 text-sm font-medium ${
-                isDarkMode
-                  ? 'text-accent-turquoise hover:text-accent-turquoise/80'
-                  : 'text-blue-600 hover:text-blue-700'
-              }`}
-            >
-              Read More →
-            </button>
-          </div>
+          </Link>
         ))}
       </div>
       <motion.div
@@ -115,8 +64,8 @@ export default function Blog({ isDarkMode }: ThemeProps) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="flex justify-center mt-6"
       >
-        <a
-          href="/blogs"
+        <Link
+          to="/blogs"
           className={`px-4 py-2 rounded-lg font-medium ${
             isDarkMode
               ? 'bg-gray-800 text-white hover:bg-gray-700'
@@ -124,7 +73,7 @@ export default function Blog({ isDarkMode }: ThemeProps) {
           } transition-colors`}
         >
           View More Blogs
-        </a>
+        </Link>
       </motion.div>
     </div>
   );

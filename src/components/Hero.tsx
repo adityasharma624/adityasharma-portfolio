@@ -1,6 +1,8 @@
 import { ThemeProps } from '../types';
 import { motion } from 'framer-motion';
 import { DocumentTextIcon } from '@heroicons/react/24/outline';
+import heroImg from '../assets/hero_img.jpg';
+import cv from '../assets/Aditya_Sharma_CV.pdf';
 
 export default function Hero({ isDarkMode }: ThemeProps) {
   return (
@@ -33,7 +35,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
           className="flex items-center gap-4 pl-0"
         >
           <a
-            href="Aditya_Sharma_CV.pdf"
+            href={cv}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-accent-turquoise text-white hover:bg-accent-turquoise/90 transition-colors"
@@ -119,7 +121,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
       >
         <div className="w-56 h-56 md:w-64 md:h-64 relative">
           <img
-            src="hero_img.jpg"
+            src={heroImg}
             alt="Aditya Sharma"
             className="w-full h-full object-cover rounded-lg"
           />

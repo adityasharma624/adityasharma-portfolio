@@ -59,10 +59,10 @@ export default function CompetitiveProgramming({ isDarkMode }: ThemeProps) {
         {Object.entries(platforms).map(([key, platform]) => (
           <div
             key={key}
-            className={`p-4 rounded-lg transition-all duration-200 transform hover:scale-105 ${
+            className={`p-6 rounded-lg transition-all duration-300 hover:shadow-lg ${
               isDarkMode
                 ? 'bg-gray-800 hover:bg-gray-700'
-                : 'bg-gray-50 hover:bg-gray-100'
+                : 'bg-gray-50 hover:bg-white'
             }`}
           >
             <div className="flex items-center justify-between mb-3">

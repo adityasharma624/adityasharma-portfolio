@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ThemeProps } from '../types';
+import { Link } from 'react-router-dom';
 
 const featuredProjects = [
   {
@@ -37,11 +38,11 @@ export default function Projects({ isDarkMode }: ThemeProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`p-4 rounded-lg ${
+            className={`p-6 rounded-lg transition-all duration-300 hover:shadow-lg ${
               isDarkMode
                 ? 'bg-gray-800 hover:bg-gray-700'
-                : 'bg-gray-50 hover:bg-gray-100'
-            } transition-all`}
+                : 'bg-gray-50 hover:bg-white'
+            }`}
           >
             <h3 className={`font-medium mb-2 ${
               isDarkMode ? 'text-white' : 'text-gray-900'
@@ -90,8 +91,8 @@ export default function Projects({ isDarkMode }: ThemeProps) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="flex justify-center mt-6"
       >
-        <a
-          href="#"
+        <Link
+          to="/projects"
           className={`px-4 py-2 rounded-lg font-medium ${
             isDarkMode
               ? 'bg-gray-800 text-white hover:bg-gray-700'
@@ -99,7 +100,7 @@ export default function Projects({ isDarkMode }: ThemeProps) {
           } transition-colors`}
         >
           View All Projects
-        </a>
+        </Link>
       </motion.div>
     </div>
   );
