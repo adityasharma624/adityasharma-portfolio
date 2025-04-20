@@ -26,7 +26,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
             isDarkMode ? 'text-gray-300' : 'text-gray-600'
           }`}
         >
-          A passionate developer with expertise in competitive programming and machine learning.
+          Aspiring software developer with growing experience in competitive programming, machine learning, and core computer science.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -59,7 +59,7 @@ const skills: Skill[] = [
 export default function Skills({ isDarkMode }: ThemeProps) {
   return (
     <div className="space-y-6">
-      <h2 className={`text-xl font-semibold mb-6 ${
+      <h2 className={`text-2xl font-semibold mb-6 ${
         isDarkMode ? 'text-white' : 'text-gray-900'
       }`}>
         Skills

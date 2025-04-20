@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 const featuredProjects = [
   {
-    title: "ML Research Paper",
-    description: "Research on improving neural network architectures for image classification tasks.",
-    tags: ["Machine Learning", "Python", "PyTorch"],
-    link: "#"
+    title: "Transparent Price Discovery for Agri-Commodities",
+    description: "Research project leveraging machine learning models to enable transparent and accurate price discovery in agricultural commodity markets.",
+    tags: ["Machine Learning", "Regression", "Python", "scikit-learn", "pandas", "matplotlib"],
+    link: "https://github.com/adityasharma624/Transparent-Price-Discovery-for-Agri-Commodities"
   },
   {
-    title: "Compiler Project",
-    description: "A custom compiler for a subset of C language with optimization passes.",
-    tags: ["C++", "Compiler Design", "LLVM"],
-    link: "#"
-  }
+    "title": "Real-Time Process Monitor",
+    "description": "A real-time process monitoring tool built in Python that displays CPU and memory usage of running processes in a Linux environment.",
+    "tags": ["Python", "Windows", "System Programming", "Process Management", "pyutil"],
+    "link": "https://github.com/adityasharma624/Real-Time-Process-Monitor"
+  }  
 ];
 
 export default function Projects({ isDarkMode }: ThemeProps) {
@@ -24,7 +24,7 @@ export default function Projects({ isDarkMode }: ThemeProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`text-xl font-semibold mb-6 ${
+        className={`text-2xl font-semibold mb-6 ${
           isDarkMode ? 'text-white' : 'text-gray-900'
         }`}
       >
@@ -99,7 +99,7 @@ export default function Projects({ isDarkMode }: ThemeProps) {
               : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
           } transition-colors`}
         >
-          View All Projects
+          View More Projects
         </Link>
       </motion.div>
     </div>

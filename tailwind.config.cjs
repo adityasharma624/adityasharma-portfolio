@@ -91,5 +91,67 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')({
+      className: 'prose',
+      modifiers: ['sm', 'lg'],
+      variants: ['dark'],
+      styles: {
+        DEFAULT: {
+          color: '#374151',
+          a: {
+            color: '#0ea5e9',
+            '&:hover': {
+              color: '#0284c7',
+            },
+          },
+          h1: {
+            color: '#111827',
+          },
+          h2: {
+            color: '#1f2937',
+          },
+          h3: {
+            color: '#374151',
+          },
+          code: {
+            color: '#0ea5e9',
+            backgroundColor: '#f3f4f6',
+            padding: '0.2em 0.4em',
+            borderRadius: '0.25rem',
+          },
+          pre: {
+            backgroundColor: '#f3f4f6',
+            color: '#374151',
+          },
+        },
+        dark: {
+          color: '#d1d5db',
+          a: {
+            color: '#38bdf8',
+            '&:hover': {
+              color: '#7dd3fc',
+            },
+          },
+          h1: {
+            color: '#f3f4f6',
+          },
+          h2: {
+            color: '#e5e7eb',
+          },
+          h3: {
+            color: '#d1d5db',
+          },
+          code: {
+            color: '#38bdf8',
+            backgroundColor: '#1f2937',
+          },
+          pre: {
+            backgroundColor: '#1f2937',
+            color: '#d1d5db',
+          },
+        },
+      },
+    }),
+  ],
 } 

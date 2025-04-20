@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
 import { blogPosts } from '../types/blog';
 import { ThemeProps } from '../types';
 
@@ -65,9 +66,7 @@ export default function BlogPost({ isDarkMode }: ThemeProps) {
           </div>
         </div>
 
-        <article className={`prose ${
-          isDarkMode ? 'prose-invert' : ''
-        } max-w-none`}>
+        <article className="max-w-none">
           <header className="mb-8">
             <div className={`text-sm ${
               isDarkMode ? 'text-gray-400' : 'text-gray-500'
@@ -95,7 +94,45 @@ export default function BlogPost({ isDarkMode }: ThemeProps) {
             </div>
           </header>
 
-          <div className="markdown-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className={`prose prose-lg ${
+            isDarkMode ? 'prose-invert' : ''
+          } max-w-none`}>
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-2xl font-bold mb-3">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-xl font-bold mb-2">{children}</h3>,
+                p: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
+                ul: ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>,
+                li: ({ children }) => <li className="mb-1">{children}</li>,
+                code: ({ children }) => (
+                  <code className="bg-gray-100 dark:bg-gray-800 rounded px-2 py-1 text-sm font-mono">
+                    {children}
+                  </code>
+                ),
+                pre: ({ children }) => (
+                  <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4 overflow-x-auto font-mono">
+                    {children}
+                  </pre>
+                ),
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {children}
+                  </a>
+                ),
+                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                em: ({ children }) => <em className="italic">{children}</em>,
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
+          </div>
         </article>
       </motion.div>
     </div>

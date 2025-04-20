@@ -13,33 +13,33 @@ interface PlatformStats {
 const platforms = {
   leetcode: {
     name: 'LeetCode',
-    rating: '1800+',
-    problemsSolved: '500+',
-    contests: '50+',
-    rank: 'Top 5%',
-    percentile: '95%',
+    rating: 'N/A',
+    problemsSolved: '14',
+    contests: '0',
+    rank: 'N/A',
+    percentile: 'N/A',
     profileUrl: 'https://leetcode.com/otter_',
     logo: 'https://leetcode.com/static/images/LeetCode_logo_rvs.png',
     color: 'text-orange-500'
   },
   codeforces: {
     name: 'Codeforces',
-    rating: '1600+',
-    problemsSolved: '300+',
-    contests: '30+',
-    rank: 'Top 10%',
-    percentile: '90%',
+    rating: 'N/A',
+    problemsSolved: '0',
+    contests: '0',
+    rank: 'N/A',
+    percentile: 'N/A',
     profileUrl: 'https://codeforces.com/profile/otter_',
     logo: 'https://codeforces.org/s/0/favicon-96x96.png',
     color: 'text-blue-500'
   },
   codechef: {
     name: 'CodeChef',
-    rating: '1700+',
-    problemsSolved: '400+',
-    contests: '40+',
-    rank: 'Top 7%',
-    percentile: '93%',
+    rating: 'N/A',
+    problemsSolved: '0',
+    contests: '0',
+    rank: 'N/A',
+    percentile: 'N/A',
     profileUrl: 'https://www.codechef.com/users/otte_r',
     logo: 'https://cdn.codechef.com/sites/all/themes/abessive/cc-logo.png',
     color: 'text-green-500'
@@ -49,7 +49,7 @@ const platforms = {
 export default function CompetitiveProgramming({ isDarkMode }: ThemeProps) {
   return (
     <div className="space-y-6">
-      <h2 className={`text-xl font-semibold mb-6 ${
+      <h2 className={`text-2xl font-semibold mb-6 ${
         isDarkMode ? 'text-white' : 'text-gray-900'
       }`}>
         Competitive Programming

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeProps } from '../types';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
@@ -11,6 +11,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,13 +30,22 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
     { id: 'blog', label: 'Blog', path: '/#blog' }
   ];
 
-  const handleNavClick = (path: string) => {
+  const handleNavClick = (path: string, e: React.MouseEvent) => {
+    e.preventDefault();
     setIsMenuOpen(false);
+    
     if (path.startsWith('/#')) {
       const sectionId = path.split('#')[1];
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      
+      // If we're not on the home page, navigate to home first
+      if (location.pathname !== '/') {
+        navigate('/', { state: { scrollTo: sectionId } });
+      } else {
+        // If we're already on home page, just scroll to the section
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     }
   };
@@ -58,10 +68,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
           <div className="hidden md:block">
             <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.id}
-                  to={item.path}
-                  onClick={() => handleNavClick(item.path)}
+                  href={item.path}
+                  onClick={(e) => handleNavClick(item.path, e)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                     isDarkMode
                       ? activeSection === item.id
@@ -73,7 +83,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
                   }`}
                 >
                   {item.label}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -113,10 +123,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
         }`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.id}
-                to={item.path}
-                onClick={() => handleNavClick(item.path)}
+                href={item.path}
+                onClick={(e) => handleNavClick(item.path, e)}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                   isDarkMode
                     ? activeSection === item.id
@@ -128,7 +138,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode, activeSection }: NavbarProps) => {
                 }`}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

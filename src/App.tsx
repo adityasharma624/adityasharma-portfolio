@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Skills from './components/Skills';
 import CompetitiveProgramming from './components/CompetitiveProgramming';
 import Projects from './components/Projects';
+import ProjectsPage from './pages/Projects';
 import Blog from './components/Blog';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
@@ -18,6 +19,16 @@ function MainContent({ isDarkMode, setIsDarkMode }: ThemeProps) {
   const location = useLocation();
 
   useKeyboardNavigation();
+
+  // Handle scrolling to sections after navigation
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,6 +98,7 @@ function MainContent({ isDarkMode, setIsDarkMode }: ThemeProps) {
               </section>
             </main>
           } />
+          <Route path="/projects" element={<ProjectsPage isDarkMode={isDarkMode} />} />
           <Route path="/blogs" element={<Blogs isDarkMode={isDarkMode} />} />
           <Route path="/blog/:slug" element={<BlogPost isDarkMode={isDarkMode} />} />
         </Routes>
