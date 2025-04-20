@@ -1,48 +1,18 @@
 import { ThemeProps } from '../types';
-import { motion } from 'framer-motion';
-import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
-export default function Hero({ isDarkMode }: ThemeProps) {
+export default function Footer({ isDarkMode }: ThemeProps) {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-      <div className="flex-1 space-y-6">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className={`text-4xl md:text-5xl font-bold ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}
-        >
-          Hi, I'm Aditya Sharma
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className={`text-lg md:text-xl ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-600'
-          }`}
-        >
-          A passionate developer with expertise in competitive programming and full-stack development.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex items-center gap-4 pl-0"
-        >
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-accent-turquoise text-white hover:bg-accent-turquoise/90 transition-colors"
-          >
-            <DocumentTextIcon className="w-5 h-5" />
-            Resume
-          </a>
-
-          <div className="flex space-x-4">
+    <footer className={`py-8 border-t ${
+      isDarkMode ? 'border-gray-800' : 'border-gray-200'
+    }`}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className={`text-sm ${
+            isDarkMode ? 'text-gray-400' : 'text-gray-500'
+          }`}>
+            © 2025 Aditya Sharma. All rights reserved.
+          </div>
+          <div className="flex space-x-4 mt-4 md:mt-0">
             <a
               href="https://linkedin.com/in/yourusername"
               target="_blank"
@@ -54,7 +24,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               }`}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -73,7 +43,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               }`}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -94,7 +64,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               }`}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -109,22 +79,8 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               </svg>
             </a>
           </div>
-        </motion.div>
-      </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex-1 flex justify-center"
-      >
-        <div className="w-56 h-56 md:w-64 md:h-64 relative">
-          <img
-            src="hero_img.jpg"
-            alt="Aditya Sharma"
-            className="w-full h-full object-cover rounded-lg"
-          />
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </footer>
   );
 } 

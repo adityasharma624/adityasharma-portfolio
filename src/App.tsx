@@ -6,6 +6,7 @@ import CompetitiveProgramming from './components/CompetitiveProgramming';
 import Projects from './components/Projects';
 import Blog from './components/Blog';
 import BackToTop from './components/BackToTop';
+import Footer from './components/Footer';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { ThemeProps } from './types';
 
@@ -69,6 +70,7 @@ function App() {
       </main>
 
       <BackToTop />
+      <Footer isDarkMode={isDarkMode} />
     </div>
   );
 }
