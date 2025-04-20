@@ -1,42 +1,54 @@
-# ✨ Aditya Sharma — Personal Portfolio
+# React + TypeScript + Vite
 
-This is my personal portfolio website — a place where I showcase my projects, competitive programming journey, blog posts, and skills as a second-year Computer Science student.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Tech Stack
+Currently, two official plugins are available:
 
-- **Framework:** React
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Bundler:** Vite
-- **Deployment:** GitHub Pages / Vercel / Netlify (pick yours)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🛠 Built with Cursor
+## Expanding the ESLint configuration
 
-This entire portfolio was built using [**Cursor**](https://www.cursor.sh) — an AI-powered code editor that made the development process faster, smarter, and much more enjoyable.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-> Big thanks to the Cursor team for building such an incredible tool.
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-## 📸 Features
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- Light mode design with a soft, pleasant color palette
-- Smooth scroll animations and subtle hover effects
-- Responsive layout for desktop and mobile
-- Sections:
-  - Hero + About Me
-  - Competitive Programming Portfolio
-  - Projects
-  - Blog
-  - Skills
-  - Contact
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## 📬 Contact
-
-Feel free to connect with me:
-
-- GitHub: [github.com/yourusername](https://github.com/yourusername)
-- LinkedIn: [linkedin.com/in/yourname](https://linkedin.com/in/yourname)
-- Email: youremail@example.com
-
----
-
-© 2025 Aditya Sharma. Built with ❤️ and [Cursor](https://cursor.sh)
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
