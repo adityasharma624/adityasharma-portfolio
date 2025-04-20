@@ -18,7 +18,7 @@ const platforms = {
     contests: '50+',
     rank: 'Top 5%',
     percentile: '95%',
-    profileUrl: 'https://leetcode.com/your-profile',
+    profileUrl: 'https://leetcode.com/otter_',
     logo: 'https://leetcode.com/static/images/LeetCode_logo_rvs.png',
     color: 'text-orange-500'
   },
@@ -29,7 +29,7 @@ const platforms = {
     contests: '30+',
     rank: 'Top 10%',
     percentile: '90%',
-    profileUrl: 'https://codeforces.com/profile/your-handle',
+    profileUrl: 'https://codeforces.com/profile/otter_',
     logo: 'https://codeforces.org/s/0/favicon-96x96.png',
     color: 'text-blue-500'
   },
@@ -40,7 +40,7 @@ const platforms = {
     contests: '40+',
     rank: 'Top 7%',
     percentile: '93%',
-    profileUrl: 'https://www.codechef.com/users/your-handle',
+    profileUrl: 'https://www.codechef.com/users/otte_r',
     logo: 'https://cdn.codechef.com/sites/all/themes/abessive/cc-logo.png',
     color: 'text-green-500'
   }

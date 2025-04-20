@@ -24,7 +24,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
             isDarkMode ? 'text-gray-300' : 'text-gray-600'
           }`}
         >
-          A passionate developer with expertise in competitive programming and full-stack development.
+          A passionate developer with expertise in competitive programming and machine learning.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
           className="flex items-center gap-4 pl-0"
         >
           <a
-            href="/resume.pdf"
+            href="Aditya_Sharma_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-accent-turquoise text-white hover:bg-accent-turquoise/90 transition-colors"
@@ -44,7 +44,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
 
           <div className="flex space-x-4">
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/adityasharmacse"
               target="_blank"
               rel="noopener noreferrer"
               className={`p-2 rounded-full ${
@@ -63,7 +63,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               </svg>
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/adityasharma624"
               target="_blank"
               rel="noopener noreferrer"
               className={`p-2 rounded-full ${
@@ -86,7 +86,7 @@ export default function Hero({ isDarkMode }: ThemeProps) {
               </svg>
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:aditya.cse@gmail.com"
               className={`p-2 rounded-full ${
                 isDarkMode
                   ? 'bg-gray-800 hover:bg-gray-700'
