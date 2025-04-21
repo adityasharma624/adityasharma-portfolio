@@ -99,8 +99,8 @@ export default function Projects({ isDarkMode }: ThemeProps) {
               : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
           } transition-colors`}
         >
-          View More Projects
-        </Link>
+          View All Projects
+        </a>
       </motion.div>
     </div>
   );
