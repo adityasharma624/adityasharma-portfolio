@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -7,13 +7,15 @@ import CompetitiveProgramming from './components/CompetitiveProgramming';
 import Projects from './components/Projects';
 import ProjectsPage from './pages/Projects';
 import Blog from './components/Blog';
+import BlogPost from './pages/BlogPost';
+import BlogsPage from './pages/Blogs';
 import BackToTop from './components/BackToTop';
+import Footer from './components/Footer';
 
-function App() {
+function AppContent() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-
-  useKeyboardNavigation();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,31 +53,48 @@ function App() {
     }`}>
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} activeSection={activeSection} />
       
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-colors duration-500">
-        <section id="home" className="py-16">
-          <Hero isDarkMode={isDarkMode} />
-        </section>
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={
+            <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-colors duration-500">
+              <section id="home" className="py-24 md:py-32">
+                <Hero isDarkMode={isDarkMode} />
+              </section>
 
-        <section id="skills" className="py-16">
-          <Skills isDarkMode={isDarkMode} />
-        </section>
+              <section id="skills" className="py-20">
+                <Skills isDarkMode={isDarkMode} />
+              </section>
 
-        <section id="competitive-programming" className="py-16">
-          <CompetitiveProgramming isDarkMode={isDarkMode} />
-        </section>
+              <section id="competitive-programming" className="py-20">
+                <CompetitiveProgramming isDarkMode={isDarkMode} />
+              </section>
 
-        <section id="projects" className="py-16">
-          <Projects isDarkMode={isDarkMode} />
-        </section>
+              <section id="projects" className="py-20">
+                <Projects isDarkMode={isDarkMode} />
+              </section>
 
-        <section id="blog" className="py-16">
-          <Blog isDarkMode={isDarkMode} />
-        </section>
-      </main>
+              <section id="blog" className="py-20">
+                <Blog isDarkMode={isDarkMode} />
+              </section>
+            </main>
+          } />
+          <Route path="/projects" element={<ProjectsPage isDarkMode={isDarkMode} />} />
+          <Route path="/blogs" element={<BlogsPage isDarkMode={isDarkMode} />} />
+          <Route path="/blog/:slug" element={<BlogPost isDarkMode={isDarkMode} />} />
+        </Routes>
+      </div>
 
       <Footer isDarkMode={isDarkMode} />
       <BackToTop />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

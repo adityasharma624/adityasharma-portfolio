@@ -100,7 +100,7 @@ export default function Projects({ isDarkMode }: ThemeProps) {
           } transition-colors`}
         >
           View All Projects
-        </a>
+        </Link>
       </motion.div>
     </div>
   );
